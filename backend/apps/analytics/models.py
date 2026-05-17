@@ -4,14 +4,16 @@ from django.db import models
 
 class RestaurantAnalyticsEvent(models.Model):
     class EventType(models.TextChoices):
-        VIEW_MENU = "view_menu", "View menu"
-        CALL_RESTAURANT = "call_restaurant", "Call restaurant"
-        GET_DIRECTIONS = "get_directions", "Get directions"
-        CLAIM_OFFER = "claim_offer", "Claim offer"
-        ORDER_UBER_EATS = "order_uber_eats", "Order on Uber Eats"
-        ORDER_DELIVEROO = "order_deliveroo", "Order on Deliveroo"
-        ORDER_JUST_EAT = "order_just_eat", "Order on Just Eat"
-        ORDER_DIRECTLY = "order_directly", "Order directly"
+        PROFILE_VIEW = "profile_view", "Profile view"
+        MENU_VIEW = "menu_view", "Menu view"
+        OFFER_CLAIM_CLICK = "offer_claim_click", "Offer claim click"
+        CALL_CLICK = "call_click", "Call click"
+        DIRECTION_CLICK = "direction_click", "Direction click"
+        FAVOURITE_SAVE = "favourite_save", "Favourite save"
+        ORDER_UBER_EATS_CLICK = "order_uber_eats_click", "Order Uber Eats click"
+        ORDER_DELIVEROO_CLICK = "order_deliveroo_click", "Order Deliveroo click"
+        ORDER_JUST_EAT_CLICK = "order_just_eat_click", "Order Just Eat click"
+        ORDER_DIRECT_CLICK = "order_direct_click", "Order direct click"
 
     customer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
