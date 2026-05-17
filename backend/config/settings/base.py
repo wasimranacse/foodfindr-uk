@@ -18,7 +18,7 @@ if env_file.exists():
 
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="")
 if not SECRET_KEY:
-    SECRET_KEY = "unsafe-local-development-key"
+    SECRET_KEY = "unsafe-local-development-key-for-foodfindr-local-only"
 
 DEBUG = env("DJANGO_DEBUG")
 

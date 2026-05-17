@@ -2,7 +2,7 @@ from .base import *  # noqa: F403
 
 DEBUG = False
 
-if SECRET_KEY == "unsafe-local-development-key":  # noqa: F405
+if SECRET_KEY == "unsafe-local-development-key-for-foodfindr-local-only":  # noqa: F405
     raise RuntimeError("DJANGO_SECRET_KEY must be set in production.")
 
 SECURE_SSL_REDIRECT = True
