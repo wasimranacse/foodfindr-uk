@@ -14,10 +14,13 @@ def calculate_distance_km(origin_latitude, origin_longitude, target_latitude, ta
     if None in {origin_latitude, origin_longitude, target_latitude, target_longitude}:
         return None
 
-    origin_latitude = radians(float(origin_latitude))
-    origin_longitude = radians(float(origin_longitude))
-    target_latitude = radians(float(target_latitude))
-    target_longitude = radians(float(target_longitude))
+    try:
+        origin_latitude = radians(float(origin_latitude))
+        origin_longitude = radians(float(origin_longitude))
+        target_latitude = radians(float(target_latitude))
+        target_longitude = radians(float(target_longitude))
+    except (TypeError, ValueError):
+        return None
 
     latitude_delta = target_latitude - origin_latitude
     longitude_delta = target_longitude - origin_longitude
