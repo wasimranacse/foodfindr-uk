@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 
 
-class AnalyticsEvent(models.Model):
+class RestaurantAnalyticsEvent(models.Model):
     class EventType(models.TextChoices):
         VIEW_MENU = "view_menu", "View menu"
         CALL_RESTAURANT = "call_restaurant", "Call restaurant"
@@ -13,12 +13,12 @@ class AnalyticsEvent(models.Model):
         ORDER_JUST_EAT = "order_just_eat", "Order on Just Eat"
         ORDER_DIRECTLY = "order_directly", "Order directly"
 
-    user = models.ForeignKey(
+    customer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name="analytics_events",
+        related_name="restaurant_analytics_events",
     )
     restaurant = models.ForeignKey(
         "restaurants.Restaurant",
@@ -36,5 +36,30 @@ class AnalyticsEvent(models.Model):
         indexes = [
             models.Index(fields=["event_type", "created_at"]),
             models.Index(fields=["restaurant", "created_at"]),
-            models.Index(fields=["user", "created_at"]),
+            models.Index(fields=["customer", "created_at"]),
         ]
+
+
+class LocationSearchLog(models.Model):
+    customer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="location_search_logs",
+    )
+    query = models.CharField(max_length=255, blank=True)
+    postcode = models.CharField(max_length=20, blank=True)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["postcode", "created_at"]),
+            models.Index(fields=["customer", "created_at"]),
+        ]
+
+
+AnalyticsEvent = RestaurantAnalyticsEvent

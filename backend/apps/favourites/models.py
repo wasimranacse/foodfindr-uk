@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 
 
-class Favourite(models.Model):
+class FavouriteRestaurant(models.Model):
     customer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -26,3 +26,6 @@ class Favourite(models.Model):
 
     def __str__(self) -> str:
         return f"{self.customer} favourite {self.restaurant}"
+
+
+Favourite = FavouriteRestaurant
