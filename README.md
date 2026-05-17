@@ -384,6 +384,28 @@ MVP seed data should include London examples for:
 
 Seed data must be clearly marked as demo or development data.
 
+## Development Seed Data
+
+Run the development seed command from the backend folder:
+
+```powershell
+cd backend
+python manage.py migrate
+python manage.py seed_foodfindr
+```
+
+The command is idempotent and creates fictional demo data only:
+
+- United Kingdom, major UK cities, London areas, and cuisines.
+- 20 fictional London restaurants with menus, offers, reviews, hygiene ratings, dietary flags, delivery settings, featured/premium examples, and owner-submitted external ordering URLs.
+- Development users:
+  - `customer@foodfindr.local`
+  - `owner@foodfindr.local`
+  - `admin@foodfindr.local`
+  - `superadmin@foodfindr.local`
+
+All seed users use the password `FoodFindrDev123!`.
+
 ## Development Phases
 
 ### Phase 0: Planning and Structure
